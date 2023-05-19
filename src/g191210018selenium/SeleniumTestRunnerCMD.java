@@ -9,11 +9,15 @@ public class SeleniumTestRunnerCMD {
 	
 	private final String website = "https://www.saucedemo.com/";
 	
+	private final LoginErrorsSeleniumTest loginErrorsSeleniumTest;
 	private final LoginSeleniumTest loginSeleniumTest;
+	private final InventorySeleniumTest inventorySeleniumTest;
 	
 	public SeleniumTestRunnerCMD(WebDriver driver) {
 		this.driver = driver;
+		this.loginErrorsSeleniumTest = new LoginErrorsSeleniumTest(driver);
 		this.loginSeleniumTest = new LoginSeleniumTest(driver);
+		this.inventorySeleniumTest = new InventorySeleniumTest(driver);
 	}
 	
 	public void cmd() {
@@ -27,16 +31,52 @@ public class SeleniumTestRunnerCMD {
 
 			switch(ins.next()) {
 				case "1":
-					loginSeleniumTest.usernameIsRequired();
+					loginErrorsSeleniumTest.usernameIsRequired();
 				    break;
 				case "2":
-					loginSeleniumTest.passwordIsRequired();
+					loginErrorsSeleniumTest.passwordIsRequired();
 				    break;
 				case "3":
-					loginSeleniumTest.usernameAndPasswordNotMatch();
+					loginErrorsSeleniumTest.usernameAndPasswordNotMatch();
 				    break;
 				case "4":
-					loginSeleniumTest.lockedOutUserTest();
+					loginErrorsSeleniumTest.lockedOutUserTest();
+				    break;
+				case "5":
+					loginSeleniumTest.standartUserLogin();
+				    break;
+				case "6":
+					loginSeleniumTest.locketOutUserLogin();
+				    break;
+				case "7":
+					loginSeleniumTest.problemUser();
+				    break;
+				case "8":
+					loginSeleniumTest.performanceGlitchUser();
+				    break;
+				case "9":
+					inventorySeleniumTest.firstElementOfListTest();
+				    break;
+				case "10":
+					inventorySeleniumTest.orderAtoZTest();
+				    break;
+				case "11":
+					inventorySeleniumTest.orderZtoATest();
+				    break;
+				case "12":
+					inventorySeleniumTest.orderByPriceLowtoHighTest();;
+				    break;
+				case "13":
+					inventorySeleniumTest.orderByPriceHightoLowTest();;
+				    break;
+				case "14":
+					inventorySeleniumTest.itemTitleHoverTest();
+				    break;
+				case "15":
+					inventorySeleniumTest.addToCardButtonChange();
+				    break;
+				case "16":
+					inventorySeleniumTest.headerOrderListIconCount();
 				    break;
 				case "menu":
 					System.out.println("Program is closing");
