@@ -6,7 +6,10 @@ import java.util.regex.Pattern;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.*;
 
 public class CheckoutStepTwoTest {
@@ -75,5 +78,26 @@ public class CheckoutStepTwoTest {
 		WebElement cancelButton = driver.findElement(By.id("finish"));
 		cancelButton.click();
 		CmdUtils.assertEquals("https://www.saucedemo.com/checkout-complete.html",driver.getCurrentUrl(),"Finish");
+	}
+	
+	public void runAll() {
+		validateItemsBeforePayment();
+		resetSession();
+		validateItemTotalPrice();
+		resetSession();
+		validateTotalPrice();
+		resetSession();
+		cancelButtonTest();
+		resetSession();
+		finishButtonTest();
+	}
+	
+	public void resetSession() {
+		WebElement drawerbtn = driver.findElement(By.id("react-burger-menu-btn"));
+		drawerbtn.click();
+		
+		WebElement resetStateButton = new WebDriverWait(driver, Duration.ofSeconds(10))
+		        .until(ExpectedConditions.elementToBeClickable(By.id("reset_sidebar_link")));
+		resetStateButton.click();
 	}
 }

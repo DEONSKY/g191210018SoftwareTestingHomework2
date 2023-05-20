@@ -132,6 +132,21 @@ public class SeleniumTestRunnerCMD {
 				case "32":
 					checkoutStepTwoTest.finishButtonTest();
 					break;
+				case "g1":
+					inventorySeleniumTest.runAll();
+					break;
+				case "g2":
+					loginErrorsSeleniumTest.runAll();
+					break;
+				case "g3":
+					cartSeleniumTest.runAll();
+					break;
+				case "g4":
+					checkoutStepOneTest.runAll();
+					break;
+				case "g5":
+					checkoutStepTwoTest.runAll();
+					break;
 				case "menu":
 					System.out.println("Program is closing");
 					return;

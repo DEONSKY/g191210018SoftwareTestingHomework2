@@ -2,11 +2,14 @@ package g191210018selenium;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.time.Duration;
 import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CheckoutStepOneTest {
 	private final WebDriver driver;
@@ -52,6 +55,25 @@ public class CheckoutStepOneTest {
 		return selectedItems;
 	}
 	
+	public void runAll() {
+		formFirstNameRequired();
+		resetSession();
+		formLastNameRequired();
+		resetSession();
+		formPostalCodeRequired();
+		resetSession();
+		checkoutStepTwo();
+		resetSession();
+	}
+	
+	public void resetSession() {
+		WebElement drawerbtn = driver.findElement(By.id("react-burger-menu-btn"));
+		drawerbtn.click();
+		
+		WebElement resetStateButton = new WebDriverWait(driver, Duration.ofSeconds(10))
+		        .until(ExpectedConditions.elementToBeClickable(By.id("reset_sidebar_link")));
+		resetStateButton.click();
+	}
 	
 	public void fillAndCheckout(String firstName,String lastName,String postalCode) {
 		WebElement firstNameInput = driver.findElement(By.id("first-name"));

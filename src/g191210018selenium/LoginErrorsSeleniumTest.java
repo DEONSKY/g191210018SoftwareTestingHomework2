@@ -15,18 +15,12 @@ public class LoginErrorsSeleniumTest {
 		this.driver = driver;
 	}
 	
-	public void usernameIsRequired () {
+	public void usernameIsRequired() {
 		driver.get("https://www.saucedemo.com/");
 		WebElement loginButton = driver.findElement(By.id("login-button"));
 		loginButton.click();
 		WebElement errorMessage = driver.findElement(By.className("error-message-container"));
-		System.out.println(errorMessage.getText());
-		try {
-			assertEquals("Epic sadface: Username is required",errorMessage.getText());
-			System.out.println("Success");
-		}catch(AssertionError err) {
-			System.out.println("\u001B[31m" + err.getMessage() + "\u001B[0m");
-		}
+		CmdUtils.assertEquals("Epic sadface: Username is required",errorMessage.getText(),"Username is Required Test");
 		/*
 		WebElement usernameInput = driver.findElement(By.id("user-name"));
 		usernameInput.click();
@@ -34,7 +28,7 @@ public class LoginErrorsSeleniumTest {
 		*/
 	}
 	
-	public void passwordIsRequired () {
+	public void passwordIsRequired() {
 		driver.get("https://www.saucedemo.com/");
 		WebElement usernameInput = driver.findElement(By.id("user-name"));
 		usernameInput.click();
@@ -42,15 +36,10 @@ public class LoginErrorsSeleniumTest {
 		WebElement loginButton = driver.findElement(By.id("login-button"));
 		loginButton.click();
 		WebElement errorMessage = driver.findElement(By.className("error-message-container"));
-		System.out.println(errorMessage.getText());
-		try {
-		assertEquals("Epic sadface: Password is required",errorMessage.getText());
-		}catch(AssertionError err) {
-			System.out.println(err.getMessage());
-		}
+		CmdUtils.assertEquals("Epic sadface: Password is required",errorMessage.getText(),"Password is Required Test");
 	}
 	
-	public void usernameAndPasswordNotMatch () {
+	public void usernameAndPasswordNotMatch() {
 		driver.get("https://www.saucedemo.com/");
 		WebElement usernameInput = driver.findElement(By.id("user-name"));
 		usernameInput.click();
@@ -61,15 +50,10 @@ public class LoginErrorsSeleniumTest {
 		WebElement loginButton = driver.findElement(By.id("login-button"));
 		loginButton.click();
 		WebElement errorMessage = driver.findElement(By.className("error-message-container"));
-		System.out.println(errorMessage.getText());
-		try {
-		assertEquals("Epic sadface: Username and password do not match any user in this service",errorMessage.getText());
-		}catch(AssertionError err) {
-			System.out.println(err.getMessage());
-		}
+		CmdUtils.assertEquals("Epic sadface: Username and password do not match any user in this service",errorMessage.getText(),"Username Password Not Match Test");
 	}
 	
-	public void lockedOutUserTest () {
+	public void lockedOutUserTest() {
 		driver.get("https://www.saucedemo.com/");
 		WebElement usernameInput = driver.findElement(By.id("user-name"));
 		usernameInput.click();
@@ -80,11 +64,14 @@ public class LoginErrorsSeleniumTest {
 		WebElement loginButton = driver.findElement(By.id("login-button"));
 		loginButton.click();
 		WebElement errorMessage = driver.findElement(By.className("error-message-container"));
-		System.out.println(errorMessage.getText());
-		try {
-		assertEquals("Epic sadface: Sorry, this user has been locked out.",errorMessage.getText());
-		}catch(AssertionError err) {
-			System.out.println(err.getMessage());
-		}
+		
+		CmdUtils.assertEquals("Epic sadface: Sorry, this user has been locked out.",errorMessage.getText(),"Locked Out User Test");
+	}
+	
+	public void runAll() {
+		usernameIsRequired();
+		passwordIsRequired();
+		usernameAndPasswordNotMatch();
+		lockedOutUserTest();
 	}
 }

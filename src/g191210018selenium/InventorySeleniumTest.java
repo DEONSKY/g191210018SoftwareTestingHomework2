@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.concurrent.Callable;
 import java.time.Duration;
 import java.util.*;
 
@@ -238,6 +239,30 @@ public class InventorySeleniumTest {
 		CmdUtils.assertEquals(""+elements2.get(0).getLocation().getX(),""+elements2.get(1).getLocation().getX(),"One item per row");
 	}
 	
+	public void runAll() {
+		firstElementOfListTest();
+		resetSession();
+		orderAtoZTest();
+		resetSession();
+		orderZtoATest();
+		resetSession();
+		orderByPriceLowtoHighTest();
+		resetSession();
+		orderByPriceHightoLowTest();
+		resetSession();
+		itemTitleHoverTest();
+		resetSession();
+		addToCardButtonChange();
+		resetSession();
+		headerOrderListIconCount();
+		resetSession();
+		OpenItemsDetailsPage();
+		resetSession();
+		ResponsiveLayout();
+		resetSession();
+		ResponsiveLayout2();
+		resetSession();
+	}
 	
 	public void resetSession() {
 		WebElement drawerbtn = driver.findElement(By.id("react-burger-menu-btn"));

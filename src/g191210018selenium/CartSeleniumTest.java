@@ -5,6 +5,10 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 import java.util.*;
 
 public class CartSeleniumTest {
@@ -100,5 +104,27 @@ public class CartSeleniumTest {
 		checkoutButton.click();
 		
 		return cartItemNames;
+	}
+	
+	public void runAll() {
+		showCartItems();
+		resetSession();
+		removeFromCartList();
+		resetSession();
+		continueToShopping();
+		resetSession();
+		checkoutButtonTest();
+		resetSession();
+		readyStepOneScreen();
+		resetSession();
+	}
+	
+	public void resetSession() {
+		WebElement drawerbtn = driver.findElement(By.id("react-burger-menu-btn"));
+		drawerbtn.click();
+		
+		WebElement resetStateButton = new WebDriverWait(driver, Duration.ofSeconds(10))
+		        .until(ExpectedConditions.elementToBeClickable(By.id("reset_sidebar_link")));
+		resetStateButton.click();
 	}
 }
