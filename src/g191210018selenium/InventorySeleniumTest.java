@@ -28,7 +28,7 @@ public class InventorySeleniumTest {
 	public void firstElementOfListTest() {
 		loginSeleniumTest.standartUserLogin();
 		WebElement firstElementOfList= driver.findElement(By.xpath("//*[@id=\"inventory_container\"]/div/div[1]/div[2]/div[1]/a/div"));
-		CmdUtils.assertEquals("Sauce Labs Backpack", firstElementOfList.getText());	
+		CmdUtils.assertEquals("Sauce Labs Backpack", firstElementOfList.getText(),"First Element Of List Tes");	
 	}
 	
 	public void orderAtoZTest() {
@@ -49,7 +49,7 @@ public class InventorySeleniumTest {
 		List<String> preOrdered = titles;
 		Collections.sort(titles,Collections.reverseOrder());  
 		
-		CmdUtils.assertEquals(preOrdered.toString(), titles.toString());	
+		CmdUtils.assertEquals(preOrdered.toString(), titles.toString(),"A to Z order Test");	
 	}
 	
 	public void orderZtoATest() {
@@ -70,7 +70,7 @@ public class InventorySeleniumTest {
 		List<String> preOrdered = titles;
 		Collections.sort(titles,Collections.reverseOrder());  
 		
-		CmdUtils.assertEquals(preOrdered.toString(), titles.toString());	
+		CmdUtils.assertEquals(preOrdered.toString(), titles.toString(),"Z to A order Test");	
 	}
 	
 	void changeListOrder(String order) {
@@ -97,7 +97,7 @@ public class InventorySeleniumTest {
 		List<String> preOrdered = titles;
 		Collections.sort(titles,Collections.reverseOrder());  
 		
-		CmdUtils.assertEquals(preOrdered.toString(), titles.toString());	
+		CmdUtils.assertEquals(preOrdered.toString(), titles.toString(),"Low to High order Test");	
 	}
 	public void orderByPriceHightoLowTest() {
 		
@@ -117,7 +117,7 @@ public class InventorySeleniumTest {
 		List<String> preOrdered = titles;
 		Collections.sort(titles,Collections.reverseOrder());  
 		
-		CmdUtils.assertEquals(preOrdered.toString(), titles.toString());	
+		CmdUtils.assertEquals(preOrdered.toString(), titles.toString(),"High to Low order Test");	
 	}
 	
 	public void itemTitleHoverTest() {
@@ -128,13 +128,13 @@ public class InventorySeleniumTest {
 		WebElement element = driver.findElement(By.xpath("//*[@id=\"inventory_container\"]/div/div[1]/div[2]/div[1]/a"));
 		
 		
-		CmdUtils.assertEquals("rgba(24, 88, 58, 1)", element.findElement(By.tagName("div")).getCssValue("color"));	
+		CmdUtils.assertEquals("rgba(24, 88, 58, 1)", element.findElement(By.tagName("div")).getCssValue("color"),"Unhovered Color Test");	
 		
 		Actions action = new Actions(driver);
 		action.moveToElement(element).build().perform();
 
 		
-		CmdUtils.assertEquals("rgba(74, 74, 74, 1)", element.getCssValue("color"));	
+		CmdUtils.assertEquals("rgba(74, 74, 74, 1)", element.getCssValue("color"),"Hovered Color Test");	
 	}
 	
 	public void addToCardButtonChange() {
@@ -145,25 +145,25 @@ public class InventorySeleniumTest {
 		WebElement element = driver.findElement(By.xpath("//*[@id=\"inventory_container\"]/div/div[1]"));
 		WebElement button = element.findElement(By.tagName("button"));
 		
-		CmdUtils.assertEquals("rgba(19, 35, 34, 1)", button.getCssValue("color"));	
-		CmdUtils.assertEquals("Add to cart", button.getText());	
+		CmdUtils.assertEquals("rgba(19, 35, 34, 1)", button.getCssValue("color"),"Item Add to Cart Button Color Test");	
+		CmdUtils.assertEquals("Add to cart", button.getText(),"Item Add to Cart Button Text Test");	
 		
 		button.click();	
 
 		button = element.findElement(By.tagName("button"));
 		
-		CmdUtils.assertEquals("rgba(226, 35, 26, 1)", button.getCssValue("color"));	
-		CmdUtils.assertEquals("Remove", button.getText());	
+		CmdUtils.assertEquals("rgba(226, 35, 26, 1)", button.getCssValue("color"),"Item Remove Button Color Test");	
+		CmdUtils.assertEquals("Remove", button.getText(),"Item Remove Button Text Test");	
 		
 		button.click();	
 
 		button = element.findElement(By.tagName("button"));
 		
-		CmdUtils.assertEquals("rgba(19, 35, 34, 1)", button.getCssValue("color"));	
-		CmdUtils.assertEquals("Add to cart", button.getText());	
+		CmdUtils.assertEquals("rgba(19, 35, 34, 1)", button.getCssValue("color"),"Item Add to Cart Button Color After Remove Test");	
+		CmdUtils.assertEquals("Add to cart", button.getText(),"Item Add to Cart Button Text After Remove Test");	
 	}
 	
-	public void headerOrderListIconCount() {
+	public List<String> headerOrderListIconCount() {
 		
 		//*[@id="inventory_container"]/div
 		loginSeleniumTest.standartUserLogin();
@@ -171,23 +171,73 @@ public class InventorySeleniumTest {
 		WebElement element = driver.findElement(By.xpath("//*[@id=\"inventory_container\"]/div/div[1]"));
 		WebElement button = element.findElement(By.tagName("button"));
 		
+		List<String> selecteds = new ArrayList();
+		selecteds.add(element.findElement(By.className("inventory_item_name")).getText());
+		
 		button.click();	
 		
 		WebElement shoppingCardBadge = driver.findElement(By.className("shopping_cart_badge"));
 		
-		CmdUtils.assertEquals("1", shoppingCardBadge.getText());
+		CmdUtils.assertEquals("1", shoppingCardBadge.getText(),"Shopping Badge Increase Test");
 		
 		WebElement element2 = driver.findElement(By.xpath("//*[@id=\"inventory_container\"]/div/div[2]"));
 		WebElement button2 = element2.findElement(By.tagName("button"));
+		selecteds.add(element2.findElement(By.className("inventory_item_name")).getText());
 		
 		button2.click();	
 		
 		shoppingCardBadge = driver.findElement(By.className("shopping_cart_badge"));
 		
-		CmdUtils.assertEquals("2", shoppingCardBadge.getText());
+		CmdUtils.assertEquals("2", shoppingCardBadge.getText(),"Shopping Badge Increase Test");
 		
-		resetSession();
+		return selecteds;
 	}
+	
+	public void OpenItemsDetailsPage() {
+		loginSeleniumTest.standartUserLogin();
+		
+		WebElement link = driver.findElement(By.id("item_4_img_link"));
+		
+		link.click();
+		
+		
+		CmdUtils.assertEquals("https://www.saucedemo.com/inventory-item.html?id=4",driver.getCurrentUrl(),"Item Details Page Open");
+
+	}
+	
+	public void ResponsiveLayout() {
+		loginSeleniumTest.standartUserLogin();
+		
+		driver.manage().window().setSize(new Dimension(1366,768));
+
+		WebElement element = driver.findElement(By.className("inventory_item"));
+		
+		CmdUtils.assertEquals("505",""+element.getSize().width,"Expected Item Box Width Test On Big Screen");
+		
+		driver.manage().window().setSize(new Dimension(800+69,400));
+		
+		WebElement element2 = driver.findElement(By.className("inventory_item"));
+		
+		CmdUtils.assertEquals("770",""+element.getSize().width,"Expected Item Box Width Test On Smaller Screen");
+
+	}
+	
+	public void ResponsiveLayout2() {
+		loginSeleniumTest.standartUserLogin();
+		
+		driver.manage().window().setSize(new Dimension(1366,768));
+
+		List<WebElement> elements = driver.findElements(By.className("inventory_item"));
+		
+		CmdUtils.assertNotEquals(""+elements.get(0).getLocation().getX(),""+elements.get(1).getLocation().getX() ,"Two items in one row");
+		
+		driver.manage().window().setSize(new Dimension(800+69,400));
+		
+		List<WebElement> elements2 = driver.findElements(By.className("inventory_item"));
+		
+		CmdUtils.assertEquals(""+elements2.get(0).getLocation().getX(),""+elements2.get(1).getLocation().getX(),"One item per row");
+	}
+	
 	
 	public void resetSession() {
 		WebElement drawerbtn = driver.findElement(By.id("react-burger-menu-btn"));
