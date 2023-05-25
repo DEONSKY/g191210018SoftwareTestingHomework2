@@ -46,7 +46,7 @@ public class Program {
 	static public WebDriver createInstanceWithRemoteDriver() throws MalformedURLException {
 		
 		ChromeOptions opt = new ChromeOptions();
-		final String HOST_URL = "http://localhost:4444/";
+		final String HOST_URL = "http://chrome:4444/wd/hub";
 		return new RemoteWebDriver(new URL(HOST_URL),opt);
 	}
 }
