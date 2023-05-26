@@ -8,10 +8,10 @@ services:
         privileged: true
         shm_size: 2g
         healthcheck:
-          test: ["CMD", "curl", "-f", "http://172.23.0.2:4444"]
+          test: ["CMD", "curl", "-f", "http://chrome:4444"]
           interval: 5s
           timeout: 5s
-          retries: 5
+          retries: 10
     app:
         build: .
         stdin_open: true # docker run -i

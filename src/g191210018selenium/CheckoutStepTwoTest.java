@@ -1,3 +1,11 @@
+/**
+*
+* @author Mert Can Yılmaz mert.yilmaz13@ogr.sakarya.edu.tr
+* @since 26/05/2023
+* <p>
+* Sipariş tamamlama ekranı 2. kısımda çalıştırılan testler(Kullanıcı bilgilerini girme)
+* </p>
+*/
 package g191210018selenium;
 
 import java.util.List;

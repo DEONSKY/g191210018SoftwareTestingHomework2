@@ -1,3 +1,11 @@
+/**
+*
+* @author Mert Can Yılmaz mert.yilmaz13@ogr.sakarya.edu.tr
+* @since 26/05/2023
+* <p>
+* CMD interface
+* </p>
+*/
 package g191210018selenium;
 
 import java.util.Scanner;
@@ -147,9 +155,8 @@ public class SeleniumTestRunnerCMD {
 				case "g5":
 					checkoutStepTwoTest.runAll();
 					break;
-				case "menu":
-					System.out.println("Program is closing");
-					return;
+				case "help":
+					printMenu();
 				case "exit":
 					System.out.println("Program is closing");
 					return;
@@ -162,7 +169,11 @@ public class SeleniumTestRunnerCMD {
 		System.out.println("Menu:");
 		System.out.println("menu: show commands");
 		System.out.println("exit: exits from app");
-		System.out.println("1: Login username required test");
+		System.out.println("g1: Inventory Page Test");
+		System.out.println("g2: Login Page Errors Tests");
+		System.out.println("g3: Cart Page Selenium Tests");
+		System.out.println("g4: Checkout Step One Tests");
+		System.out.println("g5: Checkout Step Two Tests");
 	}
 	
 	private void data() {

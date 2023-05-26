@@ -1,3 +1,11 @@
+/**
+*
+* @author Mert Can Yılmaz mert.yilmaz13@ogr.sakarya.edu.tr
+* @since 26/05/2023
+* <p>
+* Sipariş tamamlama ekranı 1. kısımda çalıştırılan testler(Sepetteki ürünleri görüntüleme)
+* </p>
+*/
 package g191210018selenium;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

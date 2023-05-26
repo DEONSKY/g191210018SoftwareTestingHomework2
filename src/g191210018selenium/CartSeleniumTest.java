@@ -1,3 +1,11 @@
+/**
+*
+* @author Mert Can Yılmaz mert.yilmaz13@ogr.sakarya.edu.tr
+* @since 26/05/2023
+* <p>
+* Sepet ekranında çalıştırılan testler
+* </p>
+*/
 package g191210018selenium;
 
 import java.util.List;

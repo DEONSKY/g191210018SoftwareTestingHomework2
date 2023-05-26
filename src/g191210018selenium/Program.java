@@ -1,3 +1,11 @@
+/**
+*
+* @author Mert Can Yılmaz mert.yilmaz13@ogr.sakarya.edu.tr
+* @since 26/05/2023
+* <p>
+* Main running programm
+* </p>
+*/
 package g191210018selenium;
 
 import org.openqa.selenium.WebDriver;
